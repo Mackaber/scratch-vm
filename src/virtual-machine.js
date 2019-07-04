@@ -19,6 +19,7 @@ const formatMessage = require('format-message');
 
 const Variable = require('./engine/variable');
 const newBlockIds = require('./util/new-block-ids');
+const API = require('./api');
 
 const {loadCostume} = require('./import/load-costume.js');
 const {loadSound} = require('./import/load-sound.js');
@@ -37,6 +38,7 @@ const CORE_EXTENSIONS = [
     // 'operators',
     // 'variables',
     // 'myBlocks'
+    'wlImageBlocks'
 ];
 
 /**
@@ -156,8 +158,11 @@ class VirtualMachine extends EventEmitter {
 
         // Load core extensions
         for (const id of CORE_EXTENSIONS) {
+            console.log(id);
             this.extensionManager.loadExtensionIdSync(id);
         }
+
+        this.api = new API(this.runtime);
 
         this.blockListener = this.blockListener.bind(this);
         this.flyoutBlockListener = this.flyoutBlockListener.bind(this);
