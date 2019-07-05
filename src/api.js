@@ -12,9 +12,13 @@ class API {
 
         //switch (response.type) {
         //    case 'Image': {
-                let img = new Image();
-                img.src = "data:image/PNG;base64," + response.result;
-                stage.prepend(img);
+        let img = new Image();
+        let br = document.createElement("br");
+
+        img.style.width = "100%";
+        img.src = "data:image/PNG;base64," + response.result;
+        stage.prepend(img);
+        stage.prepend(br);
         //    }
         //}
     }

@@ -4,7 +4,6 @@ const BlockType = require('../extension-support/block-type');
 class WLImageBlocks {
     constructor (runtime) {
         this.runtime = runtime;
-        this.api  = runtime.api;
     }
 
     getInfo () {
@@ -12,16 +11,6 @@ class WLImageBlocks {
             id: 'wlImageBlocks',
             name: 'Image Manipulation',
             blocks: [
-                {
-                    opcode: 'execLine',
-                    blockType: BlockType.COMMAND,
-                    text: 'Execute [CODE]',
-                    arguments: {
-                        CODE: {
-                            type: ArgumentType.STRING
-                        }
-                    }
-                },
                 {
                     opcode: 'currentImage',
                     blockType: BlockType.REPORTER,
@@ -52,14 +41,7 @@ class WLImageBlocks {
                     }
                 }
             ],
-            menus: {
-            }
         };
-    }
-
-    execLine(args,util) {
-        this.runtime.api.execute(`${args.CODE}`);
-        console.log(`Executing... ${args.CODE}`);
     }
 
     currentImage(args,util) {

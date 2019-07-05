@@ -38,7 +38,10 @@ const CORE_EXTENSIONS = [
     // 'operators',
     // 'variables',
     // 'myBlocks'
-    'wlImageBlocks'
+    'wlBaseBlocks',
+    'wlStringBlocks',
+    'wlImageBlocks',
+    'wlElseBlocks'
 ];
 
 /**
