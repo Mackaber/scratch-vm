@@ -16,7 +16,7 @@ class API {
         let br = document.createElement("br");
 
         img.style.width = "100%";
-        img.src = "data:image/PNG;base64," + response.result;
+        img.src = "data:image/svg+xml;base64," + response.result;
         stage.prepend(img);
         stage.prepend(br);
         //    }
