@@ -41,6 +41,8 @@ const CORE_EXTENSIONS = [
     'wlBaseBlocks',
     'wlStringBlocks',
     'wlImageBlocks',
+    'wlGraphics',
+    'wlColors',
     'wlElseBlocks'
 ];
 

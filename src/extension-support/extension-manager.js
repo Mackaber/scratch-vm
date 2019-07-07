@@ -29,6 +29,8 @@ const builtinExtensions = {
     wlBaseBlocks: () => require('../wolfram_blocks/wl_base'),
     wlStringBlocks: () => require('../wolfram_blocks/wl_strings'),
     wlImageBlocks: () => require('../wolfram_blocks/wl_image'),
+    wlGraphics: () => require('../wolfram_blocks/wl_graphics'),
+    wlColors: () => require('../wolfram_blocks/wl_colors'),
     wlElseBlocks: () => require('../wolfram_blocks/wl_else')
 };
 
