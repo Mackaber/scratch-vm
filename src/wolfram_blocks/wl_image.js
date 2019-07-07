@@ -10,6 +10,8 @@ class WLImageBlocks {
         return {
             id: 'wlImageBlocks',
             name: 'Image Manipulation',
+            color1: "#AFFF87",
+            color2: "#74ff38",
             blocks: [
                 {
                     opcode: 'currentImage',

@@ -56,7 +56,7 @@ class WLElseBlocks {
                             defaultValue: "Red"
                         }
                     }
-                },{
+                }, {
                     opcode: 'counts',
                     blockType: BlockType.REPORTER,
                     text: "Count the elements in [LIST]",
@@ -65,18 +65,120 @@ class WLElseBlocks {
                             type: ArgumentType.STRING,
                         }
                     }
-                },{
+                }, {
                     opcode: 'characters',
                     blockType: BlockType.REPORTER,
-                    text: "Get the characters from [STR]",
+                    text: "Characters from [STR]",
                     arguments: {
                         STR: {
                             type: ArgumentType.STRING,
                         }
                     }
+                }, {
+                    opcode: 'dictionaryStartingWith',
+                    blockType: BlockType.REPORTER,
+                    text: "Words starting with [CHAR]",
+                    arguments: {
+                        CHAR: {
+                            type: ArgumentType.STRING,
+                            defaultValue: "M"
+                        }
+                    }
+                },
+                {
+                    opcode: 'firstPart',
+                    blockType: BlockType.REPORTER,
+                    text: "First [NUMBER] elements of [LIST]",
+                    arguments: {
+                        NUMBER: {
+                            type: ArgumentType.NUMBER,
+                            defaultValue: 100
+                        },
+                        LIST: {
+                            type: ArgumentType.STRING,
+                        }
+                    }
+                }, {
+                    opcode: 'randomSample',
+                    blockType: BlockType.REPORTER,
+                    text: "Get a random [NUMBER] of elements from [LIST]",
+                    arguments: {
+                        NUMBER: {
+                            type: ArgumentType.NUMBER,
+                            defaultValue: 100
+                        },
+                        LIST: {
+                            type: ArgumentType.STRING,
+                        }
+                    }
+                },
+                {
+                    opcode: 'tableList',
+                    blockType: BlockType.REPORTER,
+                    text: "Repeat [ELEMENT], [NUMBER] of times",
+                    arguments: {
+                        ELEMENT: {
+                            type: ArgumentType.STRING,
+                            defaultValue: "M"
+                        },
+                        NUMBER: {
+                            type: ArgumentType.STRING,
+                            defaultValue: 100
+                        }
+                    }
+                }, {
+                    opcode: 'drawInside',
+                    blockType: BlockType.REPORTER,
+                    text: "Draw [LIST] Inside [ELEMENT]",
+                    arguments: {
+                        LIST: {
+                            type: ArgumentType.STRING
+                        },
+                        ELEMENT: {
+                            type: ArgumentType.STRING
+                        }
+                    }
+                }, {
+                    opcode: 'fontStyle',
+                    blockType: BlockType.REPORTER,
+                    text: "Write [STR] with size [SIZE] and font [FONT]",
+                    arguments: {
+                        STR: {
+                            type: ArgumentType.STRING,
+                            defaultValue: "M"
+                        },
+                        SIZE: {
+                            type: ArgumentType.STRING,
+                            defaultValue: 100
+                        },
+                        FONT: {
+                            type: ArgumentType.STRING,
+                            defaultValue: 'Arial',
+                            menu: 'FONTS'
+                        }
+                    }
+                }, {
+                    opcode: 'joinStrings',
+                    blockType: BlockType.REPORTER,
+                    text: "Join the words in [LIST]",
+                    arguments: {
+                        LIST: {
+                            type: ArgumentType.STRING,
+                        }
+                    }
                 }
-            ],
 
+            ], menus: {
+                FONTS: [
+                    'Arial',
+                    'Arial Black',
+                    'Helvetica',
+                    'Times',
+                    'Times New Roman',
+                    'Courier',
+                    'Comic Sans MS'
+                ]
+            }
         }
     }
 
@@ -88,17 +190,46 @@ class WLElseBlocks {
         return "Disk[{}]";
     }
 
-    colorReplace(args,util) {
+    colorReplace(args, util) {
         return `ColorReplace[${args.IMAGE},{${args.COLOR1} -> ${args.COLOR2}}]`;
     }
 
-    counts(args,util) {
+    counts(args, util) {
         return `Counts[${args.LIST}]`;
     }
 
-    characters(args,util) {
+    characters(args, util) {
         return `Characters[ToString[${args.STR}]]`;
     }
+
+    dictionaryStartingWith(args, util) {
+        return `DictionaryLookup[ToString[${args.CHAR}]~~ ___]`;
+    }
+
+    firstPart(args, util) {
+        return `${args.LIST}[[;;${args.NUMBER}]]`;
+    }
+
+    randomSample(args, util) {
+        return `RandomSample[${args.LIST}, ${args.NUMBER}]`;
+    }
+
+    tableList(args, util) {
+        return `Table[${args.ELEMENT}, ${args.NUMBER}]`;
+    }
+
+    drawInside(args, util) {
+        return `DrawInside[${args.ELEMENT},${args.LIST}] `;
+    }
+
+    fontStyle(args, util) {
+        return `Style[ToString[${args.STR}], ${args.SIZE}, FontFamily -> "${args.FONT}"]`;
+    }
+
+    joinStrings(args, util) {
+        return `StringRiffle[${args.LIST}]`;
+    }
+
 
 }
 

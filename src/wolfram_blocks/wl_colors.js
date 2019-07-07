@@ -9,6 +9,8 @@ class WLColors {
         return {
             id: 'wlColors',
             name: 'Colors',
+            color1: "#E468FF",
+            color2: "#dc00ff",
             blocks: [
                 {
                     opcode: 'red',

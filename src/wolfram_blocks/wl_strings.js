@@ -10,6 +10,8 @@ class WLStringBlocks {
         return {
             id: 'wlStringBlocks',
             name: 'String Manipulation',
+            color1: "#FF8466",
+            color2: "#ff653a",
             blocks: [
                 {
                     opcode: 'stringJoin',
