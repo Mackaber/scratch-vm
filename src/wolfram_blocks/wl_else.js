@@ -14,35 +14,9 @@ class WLElseBlocks {
             color2: '#1975ff',
             blocks: [
                 {
-                    opcode: 'romanNumeral',
-                    blockType: BlockType.REPORTER,
-                    text: "Roman Number #[NUMBER]",
-                    arguments: {
-                        STR1: {
-                            type: ArgumentType.STRING
-                        },
-                        STR2: {
-                            type: ArgumentType.STRING
-                        }
-                    }
-                }, {
-                    opcode: 'drawDisk',
-                    blockType: BlockType.REPORTER,
-                    text: "Draw a Disk starting in [DEG1] ending in [DEG2]",
-                    arguments: {
-                        DEG1: {
-                            type: ArgumentType.NUMBER,
-                            defaultValue: "90"
-                        },
-                        DEG2: {
-                            type: ArgumentType.NUMBER,
-                            defaultValue: "180"
-                        }
-                    }
-                }, {
                     opcode: 'colorReplace',
                     blockType: BlockType.REPORTER,
-                    text: "Replace [IMAGE] color [COLOR1] with [COLOR2]",
+                    text: "ColorReplace［[IMAGE],{ [COLOR1]->[COLOR2]}］",
                     arguments: {
                         IMAGE: {
                             type: ArgumentType.STRING
@@ -59,7 +33,7 @@ class WLElseBlocks {
                 }, {
                     opcode: 'counts',
                     blockType: BlockType.REPORTER,
-                    text: "Count the elements in [LIST]",
+                    text: "Counts［[LIST]］",
                     arguments: {
                         LIST: {
                             type: ArgumentType.STRING,
@@ -68,40 +42,41 @@ class WLElseBlocks {
                 }, {
                     opcode: 'characters',
                     blockType: BlockType.REPORTER,
-                    text: "Characters from [STR]",
+                    text: "Characters［[STR]］",
+                    arguments: {
+                        STR: {
+                            type: ArgumentType.STRING,
+                            defaultValue: '"String"'
+                        }
+                    }
+                }, {
+                    opcode: 'dictionary',
+                    blockType: BlockType.REPORTER,
+                    text: "DictionaryLookup［[STR]］",
                     arguments: {
                         STR: {
                             type: ArgumentType.STRING,
                         }
                     }
-                }, {
-                    opcode: 'dictionaryStartingWith',
-                    blockType: BlockType.REPORTER,
-                    text: "Words starting with [CHAR]",
-                    arguments: {
-                        CHAR: {
-                            type: ArgumentType.STRING,
-                            defaultValue: "M"
-                        }
-                    }
                 },
                 {
-                    opcode: 'firstPart',
+                    opcode: 'part',
                     blockType: BlockType.REPORTER,
-                    text: "First [NUMBER] elements of [LIST]",
+                    text: "［[NUMBER1];;[NUMBER2]］",
                     arguments: {
-                        NUMBER: {
+                        NUMBER1: {
                             type: ArgumentType.NUMBER,
-                            defaultValue: 100
+                            defaultValue: 1
                         },
-                        LIST: {
+                        NUMBER2: {
                             type: ArgumentType.STRING,
+                            defaultValue: 100
                         }
                     }
                 }, {
                     opcode: 'randomSample',
                     blockType: BlockType.REPORTER,
-                    text: "Get a random [NUMBER] of elements from [LIST]",
+                    text: "RandomSample［[LIST],[NUMBER]］",
                     arguments: {
                         NUMBER: {
                             type: ArgumentType.NUMBER,
@@ -113,9 +88,9 @@ class WLElseBlocks {
                     }
                 },
                 {
-                    opcode: 'tableList',
+                    opcode: 'table',
                     blockType: BlockType.REPORTER,
-                    text: "Repeat [ELEMENT], [NUMBER] of times",
+                    text: "Table［[ELEMENT],[NUMBER]］",
                     arguments: {
                         ELEMENT: {
                             type: ArgumentType.STRING,
@@ -141,7 +116,7 @@ class WLElseBlocks {
                 }, {
                     opcode: 'fontStyle',
                     blockType: BlockType.REPORTER,
-                    text: "Write [STR] with size [SIZE] and font [FONT]",
+                    text: "Style［[[STR],[SIZE],FontFamily -> [FONT]］",
                     arguments: {
                         STR: {
                             type: ArgumentType.STRING,
@@ -158,17 +133,90 @@ class WLElseBlocks {
                         }
                     }
                 }, {
-                    opcode: 'joinStrings',
+                    opcode: 'stringRiffle',
                     blockType: BlockType.REPORTER,
-                    text: "Join the words in [LIST]",
+                    text: "StringRiffle［[LIST]］",
                     arguments: {
                         LIST: {
                             type: ArgumentType.STRING,
                         }
                     }
+                }, {
+                    opcode: 'mapAt',
+                    blockType: BlockType.REPORTER,
+                    text: "[ARG1][OP][ARG2]",
+                    arguments: {
+                        ARG1: {
+                            type: ArgumentType.STRING,
+                        },
+                        OP: {
+                            type: ArgumentType.STRING,
+                            defaultValue: '@',
+                            menu: 'MAPS'
+                        },
+                        ARG2: {
+                            type: ArgumentType.STRING,
+                        }
+                    }
+                }, {
+                    opcode: 'anon',
+                    blockType: BlockType.REPORTER,
+                    text: "[FUN]&",
+                    arguments: {
+                        FUN: {
+                            type: ArgumentType.STRING,
+                        }
+                    }
+                }, {
+                    opcode: 'hash',
+                    blockType: BlockType.REPORTER,
+                    text: "#"
+                }, {
+                    opcode: 'keys',
+                    blockType: BlockType.REPORTER,
+                    text: "Keys［[ASSOC]］",
+                    arguments: {
+                        ASSOC: {
+                            type: ArgumentType.STRING
+                        }
+                    }
+                },{
+                    opcode: 'reverseSort',
+                    blockType: BlockType.REPORTER,
+                    text: "ReverseSort［[LIST]］",
+                    arguments: {
+                        LIST: {
+                            type: ArgumentType.STRING
+                        }
+                    }
+                },{
+                    opcode: 'map',
+                    blockType: BlockType.REPORTER,
+                    text: "Map［[ARG1],[ARG2]］",
+                    arguments: {
+                        ARG1: {
+                            type: ArgumentType.STRING
+                        },
+                        ARG2: {
+                            type: ArgumentType.STRING
+                        }
+                    }
+                },{
+                    opcode: 'first',
+                    blockType: BlockType.REPORTER,
+                    text: "First［[LIST]］",
+                    arguments: {
+                        LIST: {
+                            type: ArgumentType.STRING
+                        }
+                    }
                 }
-
             ], menus: {
+                MAPS: [
+                    '@',
+                    '/@',
+                    '//'
+                ],
                 FONTS: [
                     'Arial',
                     'Arial Black',
@@ -182,14 +230,6 @@ class WLElseBlocks {
         }
     }
 
-    romanNumeral(args, util) {
-        return "";
-    }
-
-    drawDisk(args) {
-        return "Disk[{}]";
-    }
-
     colorReplace(args, util) {
         return `ColorReplace[${args.IMAGE},{${args.COLOR1} -> ${args.COLOR2}}]`;
     }
@@ -199,22 +239,22 @@ class WLElseBlocks {
     }
 
     characters(args, util) {
-        return `Characters[ToString[${args.STR}]]`;
+        return `Characters[${args.STR}]`;
     }
 
-    dictionaryStartingWith(args, util) {
-        return `DictionaryLookup[ToString[${args.CHAR}]~~ ___]`;
+    dictionary(args, util) {
+        return `DictionaryLookup[${args.STR}]`;
     }
 
-    firstPart(args, util) {
-        return `${args.LIST}[[;;${args.NUMBER}]]`;
+    part(args, util) {
+        return `[${args.NUMBER1};;${args.NUMBER2}]`;
     }
 
     randomSample(args, util) {
         return `RandomSample[${args.LIST}, ${args.NUMBER}]`;
     }
 
-    tableList(args, util) {
+    table(args, util) {
         return `Table[${args.ELEMENT}, ${args.NUMBER}]`;
     }
 
@@ -226,10 +266,37 @@ class WLElseBlocks {
         return `Style[ToString[${args.STR}], ${args.SIZE}, FontFamily -> "${args.FONT}"]`;
     }
 
-    joinStrings(args, util) {
+    stringRiffle(args, util) {
         return `StringRiffle[${args.LIST}]`;
     }
 
+    mapAt(args,util) {
+        return `${args.ARG1} ${args.OP} ${args.ARG2}`;
+    }
+
+    anon(args,util) {
+        return `${args.FUN} &`;
+    }
+
+    hash(args,util) {
+        return "#";
+    }
+
+    keys(args,util) {
+        return `Keys[${args.ASSOC}]`;
+    }
+
+    reverseSort(args,util) {
+        return `ReverseSort[${args.LIST}]`;
+    }
+
+    map(args,util) {
+        return `Map[${args.ARG1},${args.ARG2}]`;
+    }
+
+    first(args,util) {
+        return `First[${args.LIST}]`;
+    }
 
 }
 

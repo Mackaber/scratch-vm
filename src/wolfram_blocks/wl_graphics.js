@@ -22,38 +22,6 @@ class WLGraphics {
                             type: ArgumentType.STRING,
                         }
                     }
-                },{
-                    opcode: 'popularCurvePlot',
-                    blockType: BlockType.REPORTER,
-                    text: "Draw the plot of [CURVE]",
-                    arguments: {
-                        CURVE: {
-                            type: ArgumentType.STRING,
-                            defaultValue: 'Mario',
-                        }
-                    }
-                },{
-                    opcode: 'drawPlotLines',
-                    blockType: BlockType.REPORTER,
-                    text: "Draw the [LINE]s of Plot [PLOT] with the color [COLOR] and thickness [THICK]",
-                    arguments: {
-                        THICK: {
-                            type: ArgumentType.NUMBER,
-                            defaultValue: 0.001
-                        },
-                        PLOT: {
-                            type: ArgumentType.STRING,
-                        },
-                        COLOR: {
-                            type: ArgumentType.STRING,
-                            defaultValue: 'Green',
-                        },
-                        LINE: {
-                            type: ArgumentType.LINE,
-                            defaultValue: 'Line',
-                            menu: 'LINES'
-                        }
-                    }
                 }
             ], menus: {
                 LINES: [
@@ -64,18 +32,11 @@ class WLGraphics {
         };
     }
 
-    popularCurvePlot(args, util) {
-        return `Entity["PopularCurve", "${args.CURVE}Curve"]["Plot"]`;
-    }
-
     drawPlotLines(args, util) {
         return `Graphics[{Thickness[${args.THICK}],Cases[${args.PLOT}, Line[x_] :> {${args.COLOR}, ${args.LINE}[x]},
         Infinity]}]`;
     }
 
-    barChart(args, util) {
-        return `BarChart[${args.DATA}, {ChartLabels->Automatic}]`;
-    }
 }
 
 module.exports = WLGraphics;

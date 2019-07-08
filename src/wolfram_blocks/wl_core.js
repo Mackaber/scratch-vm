@@ -12,9 +12,9 @@ blockIconURI = '$replaceme$'
 
 class WLBaseBlocks {
 
-    constructor (runtime) {
+    constructor(runtime) {
         this.runtime = runtime;
-        this.api  = runtime.api;
+        this.api = runtime.api;
     }
 
     getInfo() {
@@ -25,34 +25,103 @@ class WLBaseBlocks {
                 {
                     opcode: 'evaluateLine',
                     blockType: BlockType.COMMAND,
-                    text: 'Evaluate [CODE]',
+                    text: "Evaluate［[CODE]］;",
+                    arguments: {
+                        CODE: {
+                            type: ArgumentType.STRING
+                        }
+                    }
+                }, {
+                    opcode: 'checkAnswer',
+                    blockType: BlockType.COMMAND,
+                    text: "CheckAnswer［[CODE],[PROBLEM]］;",
+                    arguments: {
+                        CODE: {
+                            type: ArgumentType.STRING
+                        },
+                        PROBLEM: {
+                            type: ArgumentType.STRING,
+                            defaultValue: "ButterflyString",
+                            menu: 'PROBLEMS'
+                        }
+                    }
+                }, {
+                    blockIconURI: injector,
+                    opcode: 'lastOutput',
+                    blockType: BlockType.REPORTER,
+                    text: '%',
                     arguments: {
                         CODE: {
                             type: ArgumentType.STRING
                         }
                     }
                 },{
-                    blockIconURI: injector,
-                    opcode: 'lastOutput',
+                    opcode: 'getOutput',
                     blockType: BlockType.REPORTER,
-                    text: 'Last Output',
+                    text: '\% [ID]',
                     arguments: {
-                        CODE: {
+                        ID: {
+                            type: ArgumentType.NUMBER
+                        }
+                    }
+                }, {
+                    opcode: 'bracket',
+                    blockType: BlockType.REPORTER,
+                    text: "[STR1]［[STR2]］",
+                    arguments: {
+                        STR1: {
+                            type: ArgumentType.STRING
+                        },
+                        STR2: {
+                            type: ArgumentType.STRING
+                        }
+                    }
+                }, {
+                    opcode: 'entity',
+                    blockType: BlockType.REPORTER,
+                    text: "Entity［[STR1],[STR2]］",
+                    arguments: {
+                        STR1: {
+                            type: ArgumentType.STRING
+                        },
+                        STR2: {
                             type: ArgumentType.STRING
                         }
                     }
                 }
-            ]
+            ],menus: {
+                PROBLEMS: [
+                    'ButterflyString',
+                    'MostCommonLetters'
+                ]
+            }
         }
     }
 
-    evaluateLine(args,util) {
+    evaluateLine(args, util) {
         this.runtime.api.execute(`${args.CODE}`);
         console.log(`Evaluating... ${args.CODE}`);
     }
 
-    lastOutput(args,util) {
-        return "";
+    checkAnswer(args, util) {
+        this.runtime.api.execute(`CheckAnswer[${args.CODE},${args.PROBLEM}]`);
+        console.log(`Checking... ${args.CODE}`);
+    }
+
+    entity(args, util) {
+        return `Entity[ToString[${args.STR1}],ToString[${args.STR2}]]`;
+    }
+
+    bracket(args, util) {
+        return `${args.STR1}[${args.STR2}]`;
+    }
+
+    lastOutput(args, util) {
+        return `$Session[[-1]]`;
+    }
+
+    getOutput(args,util) {
+        return `$Session[[${args.ID}]]`;
     }
 }
 

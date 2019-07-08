@@ -5,6 +5,7 @@ class API {
     constructor(runtime) {
         this.runtime = runtime;
         runtime.api = this;
+        this.lastOutputId = "";
         this.headers = {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
     }
 
@@ -17,10 +18,11 @@ class API {
         //    case 'Image': {
         let img = new Image();
         let br = document.createElement("br");
+        let p = document.createElement("p");
         let container = document.createElement("div");
         let svg = "data:image/svg+xml;base64," + response.result;
 
-        img.style.width = "100%";
+        img.style.maxWidth = "100%";
         img.style.maxHeight = "276px";
         img.src = svg;
 
@@ -30,6 +32,12 @@ class API {
         container.style.border = "0.5px solid rgb(218, 193, 193)";
         container.style.width = "100%";
 
+        p.style.margin = "0px 0px 5px 0px";
+        p.style.fontSize = "9px";
+        p.style.color = "#60788e";
+        p.innerText = `Out[${response.id}]=`;
+
+        container.prepend(p);
         container.append(img);
         stage.prepend(br);
         stage.prepend(container);
@@ -42,6 +50,9 @@ class API {
         outs.forEach((el) =>{
             el.setAttribute("xlink:href",svg);
         });
+
+        this.lastOutputId = response.id;
+
         //    }
         //}
     }
@@ -50,7 +61,7 @@ class API {
         return new Promise(resolve => {
             nets({
                 method: 'GET',
-                url: `http://localhost:18000/evaluate?code=${code}`,
+                url: `http://localhost:18000/evaluate?code=${encodeURIComponent(code)}`,
                 headers: this.headers
             }, (err, resp, body) => {
                 const json = JSON.parse(body);

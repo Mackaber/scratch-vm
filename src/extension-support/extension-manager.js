@@ -26,7 +26,7 @@ const builtinExtensions = {
     gdxfor: () => require('../extensions/scratch3_gdx_for'),
 
     // Wolfram Blocks Extensions
-    wlBaseBlocks: () => require('../wolfram_blocks/wl_base'),
+    wlBaseBlocks: () => require('../wolfram_blocks/wl_core'),
     wlStringBlocks: () => require('../wolfram_blocks/wl_strings'),
     wlImageBlocks: () => require('../wolfram_blocks/wl_image'),
     wlGraphics: () => require('../wolfram_blocks/wl_graphics'),

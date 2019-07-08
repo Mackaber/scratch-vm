@@ -10,19 +10,19 @@ class WLImageBlocks {
         return {
             id: 'wlImageBlocks',
             name: 'Image Manipulation',
-            color1: "#AFFF87",
-            color2: "#74ff38",
+            color1: "#32c27c",
+            color2: "#03c25a",
             blocks: [
                 {
                     opcode: 'currentImage',
                     blockType: BlockType.REPORTER,
-                    text: 'Current Image'
+                    text: 'CurrentImage［］'
                 },
                 {
                     opcode: 'colorNegate',
                     blockType: BlockType.REPORTER,
                     isTerminal: true,
-                    text: 'Negate color of [IMAGE]',
+                    text: 'ColorNegate［[IMAGE]］',
                     arguments: {
                         IMAGE: {
                             type: ArgumentType.STRING
@@ -32,7 +32,7 @@ class WLImageBlocks {
                     opcode: 'imageCompose',
                     blockType: BlockType.REPORTER,
                     isTerminal: true,
-                    text: 'Combine image [ARG1] with image [ARG2]',
+                    text: 'ImageCompose［[ARG1],[ARG2]］',
                     arguments: {
                         ARG1: {
                             type: ArgumentType.STRING

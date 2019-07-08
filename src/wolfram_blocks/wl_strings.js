@@ -16,23 +16,26 @@ class WLStringBlocks {
                 {
                     opcode: 'stringJoin',
                     blockType: BlockType.REPORTER,
-                    text: "Join word [STR1] with [STR2]",
+                    text: "StringJoin［[STR1],[STR2]］",
                     arguments: {
                         STR1: {
-                            type: ArgumentType.STRING
+                            type: ArgumentType.STRING,
+                            defaultValue: '"String"'
                         },
                         STR2: {
-                            type: ArgumentType.STRING
+                            type: ArgumentType.STRING,
+                            defaultValue: '"String"'
                         }
                     }
                 },
                 {
                     opcode: 'stringReverse',
                     blockType: BlockType.REPORTER,
-                    text: "Reverse word [STR]",
+                    text: "StringReverse［[STR]］",
                     arguments: {
                         STR: {
-                            type: ArgumentType.STRING
+                            type: ArgumentType.STRING,
+                            defaultValue: '"String"'
                         }
                     }
                 }
@@ -41,11 +44,11 @@ class WLStringBlocks {
     }
 
     stringJoin(args, util) {
-        return `StringJoin[ToString[${args.STR1}],ToString[${args.STR2}]]`;
+        return `StringJoin[${args.STR1},${args.STR2}]`;
     }
 
     stringReverse(args,util) {
-        return `StringReverse[ToString[${args.STR}]]`;
+        return `StringReverse[${args.STR}]`;
     }
 }
 
