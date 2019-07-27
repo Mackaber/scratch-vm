@@ -180,7 +180,7 @@ class WLElseBlocks {
                             type: ArgumentType.STRING
                         }
                     }
-                },{
+                }, {
                     opcode: 'reverseSort',
                     blockType: BlockType.REPORTER,
                     text: "ReverseSort［[LIST]］",
@@ -189,7 +189,7 @@ class WLElseBlocks {
                             type: ArgumentType.STRING
                         }
                     }
-                },{
+                }, {
                     opcode: 'map',
                     blockType: BlockType.REPORTER,
                     text: "Map［[ARG1],[ARG2]］",
@@ -201,12 +201,45 @@ class WLElseBlocks {
                             type: ArgumentType.STRING
                         }
                     }
-                },{
+                }, {
                     opcode: 'first',
                     blockType: BlockType.REPORTER,
                     text: "First［[LIST]］",
                     arguments: {
                         LIST: {
+                            type: ArgumentType.STRING
+                        }
+                    }
+                }, {
+                    opcode: 'import',
+                    blockType: BlockType.REPORTER,
+                    text: "Import［[URI]］",
+                    arguments: {
+                        URI: {
+                            type: ArgumentType.STRING
+                        }
+                    }
+                }, {
+                    opcode: 'faceEars',
+                    blockType: BlockType.REPORTER,
+                    text: "FaceEars［[IMAGE],[EAR]］",
+                    arguments: {
+                        IMAGE: {
+                            type: ArgumentType.STRING
+                        },
+                        EAR: {
+                            type: ArgumentType.STRING
+                        }
+                    }
+                }, {
+                    opcode: 'imageResize',
+                    blockType: BlockType.REPORTER,
+                    text: "ImageResize［[IMAGE],[INT]］",
+                    arguments: {
+                        IMAGE: {
+                            type: ArgumentType.STRING
+                        },
+                        INT: {
                             type: ArgumentType.STRING
                         }
                     }
@@ -270,34 +303,45 @@ class WLElseBlocks {
         return `StringRiffle[${args.LIST}]`;
     }
 
-    mapAt(args,util) {
+    mapAt(args, util) {
         return `${args.ARG1} ${args.OP} ${args.ARG2}`;
     }
 
-    anon(args,util) {
+    anon(args, util) {
         return `${args.FUN} &`;
     }
 
-    hash(args,util) {
+    hash(args, util) {
         return "#";
     }
 
-    keys(args,util) {
+    keys(args, util) {
         return `Keys[${args.ASSOC}]`;
     }
 
-    reverseSort(args,util) {
+    reverseSort(args, util) {
         return `ReverseSort[${args.LIST}]`;
     }
 
-    map(args,util) {
+    map(args, util) {
         return `Map[${args.ARG1},${args.ARG2}]`;
     }
 
-    first(args,util) {
+    first(args, util) {
         return `First[${args.LIST}]`;
     }
 
+    import(args, util) {
+        return `Import[${args.URI}]`;
+    }
+
+    faceEars(args, util) {
+        return `FaceEars[${args.IMAGE}, ${args.EAR}]`;
+    }
+
+    imageResize(args, util) {
+        return `ImageResize[${args.IMAGE}, ${args.INT}]`;
+    }
 }
 
 module.exports = WLElseBlocks;

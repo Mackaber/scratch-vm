@@ -23,6 +23,7 @@ class WLBaseBlocks {
             name: 'Core Blocks',
             blocks: [
                 {
+                    func: 'evaluateLine',
                     opcode: 'evaluateLine',
                     blockType: BlockType.COMMAND,
                     text: "Evaluate［[CODE]］;",
@@ -55,7 +56,7 @@ class WLBaseBlocks {
                             type: ArgumentType.STRING
                         }
                     }
-                },{
+                }, {
                     opcode: 'getOutput',
                     blockType: BlockType.REPORTER,
                     text: '\% [ID]',
@@ -89,7 +90,7 @@ class WLBaseBlocks {
                         }
                     }
                 }
-            ],menus: {
+            ], menus: {
                 PROBLEMS: [
                     'ButterflyString',
                     'MostCommonLetters'
@@ -120,7 +121,7 @@ class WLBaseBlocks {
         return `$Session[[-1]]`;
     }
 
-    getOutput(args,util) {
+    getOutput(args, util) {
         return `$Session[[${args.ID}]]`;
     }
 }

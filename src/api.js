@@ -42,7 +42,7 @@ class API {
         stage.prepend(br);
         stage.prepend(container);
 
-        // Pure Hacking!
+        // This is just a hack so I don't have to mess with the code of the blocks, it may be changed by regular React later
         out.forEach((el) => {
             el.setAttribute("class","output_image")
             el.setAttribute("xlink:href",svg);
