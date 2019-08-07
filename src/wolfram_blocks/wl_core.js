@@ -43,7 +43,7 @@ class WLBaseBlocks {
                         PROBLEM: {
                             type: ArgumentType.STRING,
                             defaultValue: "ButterflyString",
-                            menu: 'PROBLEMS'
+                            menu: 'CHALLENGES'
                         }
                     }
                 }, {
@@ -91,7 +91,7 @@ class WLBaseBlocks {
                     }
                 }
             ], menus: {
-                PROBLEMS: [
+                CHALLENGES: [
                     'ButterflyString',
                     'MostCommonLetters'
                 ]
